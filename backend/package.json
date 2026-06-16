@@ -1,0 +1,16 @@
+{
+  "name": "campus-growth-backend",
+  "version": "1.0.0",
+  "description": "校园小店 AI 增长参谋 - 后端代理 (DeepSeek/OpenAI 兼容)",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}

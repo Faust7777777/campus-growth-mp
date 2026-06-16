@@ -1,0 +1,177 @@
+{
+  "meta": {
+    "campus": "大连理工大学盘锦校区",
+    "period_days": 90,
+    "target_labeled_count": 13117,
+    "completed_labeled_count": 12821,
+    "valid_sample_count": 5029,
+    "scene_count": 18
+  },
+  "keyword_rank": [
+    {
+      "name": "吃",
+      "count": 950
+    },
+    {
+      "name": "好吃",
+      "count": 246
+    },
+    {
+      "name": "食堂",
+      "count": 221
+    },
+    {
+      "name": "贵",
+      "count": 183
+    },
+    {
+      "name": "想吃",
+      "count": 182
+    },
+    {
+      "name": "喝",
+      "count": 159
+    },
+    {
+      "name": "三食堂",
+      "count": 151
+    },
+    {
+      "name": "饭",
+      "count": 141
+    },
+    {
+      "name": "吃饭",
+      "count": 126
+    },
+    {
+      "name": "面",
+      "count": 109
+    },
+    {
+      "name": "推荐",
+      "count": 95
+    },
+    {
+      "name": "便宜",
+      "count": 82
+    }
+  ],
+  "scene_distribution": [
+    {
+      "name": "其他",
+      "count": 4386
+    },
+    {
+      "name": "午高峰",
+      "count": 337
+    },
+    {
+      "name": "晚自习夜宵",
+      "count": 84
+    },
+    {
+      "name": "周末聚餐",
+      "count": 57
+    },
+    {
+      "name": "下课课间",
+      "count": 55
+    },
+    {
+      "name": "外卖拼单",
+      "count": 32
+    },
+    {
+      "name": "考试周",
+      "count": 25
+    },
+    {
+      "name": "食堂",
+      "count": 16
+    },
+    {
+      "name": "社团团购",
+      "count": 7
+    },
+    {
+      "name": "雨天热食",
+      "count": 7
+    }
+  ],
+  "item_heat_rank": [
+    {
+      "name": "三食堂",
+      "score": 159
+    },
+    {
+      "name": "食堂",
+      "score": 98
+    },
+    {
+      "name": "汉堡",
+      "score": 78
+    },
+    {
+      "name": "饭",
+      "score": 72
+    },
+    {
+      "name": "外卖",
+      "score": 51
+    },
+    {
+      "name": "咖啡",
+      "score": 48
+    },
+    {
+      "name": "奶茶",
+      "score": 35
+    },
+    {
+      "name": "校园网套餐",
+      "score": 34
+    },
+    {
+      "name": "面包",
+      "score": 32
+    },
+    {
+      "name": "蜜雪冰城",
+      "score": 31
+    }
+  ],
+  "price_distribution": [
+    {
+      "name": "低",
+      "count": 378
+    },
+    {
+      "name": "高",
+      "count": 231
+    },
+    {
+      "name": "中",
+      "count": 90
+    }
+  ],
+  "sentiment_distribution": [
+    {
+      "name": "中性",
+      "count": 3021
+    },
+    {
+      "name": "正向",
+      "count": 1046
+    },
+    {
+      "name": "负向",
+      "count": 962
+    }
+  ],
+  "trend_insights": [
+    "近 90 天样本中，其他是高频消费场景，适合优先设计对应套餐和活动。",
+    "高频品类集中在三食堂、食堂、汉堡，可作为活动生成的优先菜品池。",
+    "价格敏感度以“低”为主，活动设计应控制套餐价格并减少直接大额折扣。"
+  ]
+}

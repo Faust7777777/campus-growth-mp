@@ -1,0 +1,7 @@
+.combo-tags { margin-top: 16rpx; }
+.camp-risk { color: #A35200; background: #FFF7E8; border-radius: 12rpx; padding: 12rpx 18rpx; font-size: 24rpx; margin-top: 16rpx; }
+.copy-card { padding-bottom: 22rpx; }
+.copy-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14rpx; }
+.copy-label { font-size: 29rpx; font-weight: 700; }
+.copy-btn { background: var(--brand-soft); color: var(--brand-deep); font-size: 24rpx; padding: 10rpx 26rpx; border-radius: 999rpx; font-weight: 600; }
+.copy-text { background: #F7F8FA; border-radius: 14rpx; padding: 22rpx; font-size: 27rpx; color: var(--ink-2); line-height: 1.7; white-space: pre-wrap; }

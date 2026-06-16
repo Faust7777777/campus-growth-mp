@@ -1,0 +1,11 @@
+.store-head { display: flex; align-items: center; margin-bottom: 12rpx; }
+.store-logo {
+  width: 96rpx; height: 96rpx; border-radius: 24rpx;
+  background: var(--brand-soft); font-size: 52rpx;
+  display: flex; align-items: center; justify-content: center; margin-right: 22rpx;
+}
+.store-name { font-size: 34rpx; font-weight: 700; }
+.flow { display: flex; align-items: center; flex-wrap: wrap; }
+.flow-step { background: var(--brand-soft); color: var(--brand-deep); padding: 10rpx 22rpx; border-radius: 999rpx; font-size: 25rpx; margin: 6rpx 0; }
+.flow-arrow { color: var(--ink-3); margin: 0 10rpx; }
+.reset-link { text-align: center; color: var(--ink-3); font-size: 25rpx; padding: 16rpx; }

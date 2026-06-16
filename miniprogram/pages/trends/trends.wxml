@@ -1,0 +1,73 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">大工盘锦校园消费趋势</view>
+    <view class="hero-sub">基于近 90 天校园社群样本聚合分析</view>
+  </view>
+
+  <view class="notice">{{banner}}</view>
+
+  <!-- 样本规模卡片 -->
+  <view class="stat-grid">
+    <view class="stat"><view class="stat-num">{{meta.completed_labeled_count || 0}}</view><view class="stat-label">已分析样本</view></view>
+    <view class="stat"><view class="stat-num">{{meta.valid_sample_count || 0}}</view><view class="stat-label">有效消费样本</view></view>
+    <view class="stat"><view class="stat-num">{{meta.scene_count || 0}}</view><view class="stat-label">覆盖场景数</view></view>
+  </view>
+
+  <!-- 趋势结论卡片 -->
+  <view class="card" wx:if="{{insights.length}}">
+    <view class="card-title"><view class="dot"></view>趋势结论</view>
+    <view wx:for="{{insights}}" wx:key="*this" class="insight">💡 {{item}}</view>
+  </view>
+
+  <!-- 高频关键词排行 -->
+  <view class="card" wx:if="{{keywords.length}}">
+    <view class="card-title"><view class="dot"></view>高频关键词排行</view>
+    <view wx:for="{{keywords}}" wx:key="name" class="bar-row">
+      <text class="bar-name">{{item.name}}</text>
+      <view class="bar-track"><view class="bar-fill" style="width:{{item.pct}}%"></view></view>
+      <text class="bar-val">{{item.val}}</text>
+    </view>
+  </view>
+
+  <!-- 消费场景分布 -->
+  <view class="card" wx:if="{{scenes.length}}">
+    <view class="card-title"><view class="dot"></view>消费场景分布</view>
+    <view wx:for="{{scenes}}" wx:key="name" class="bar-row">
+      <text class="bar-name">{{item.name}}</text>
+      <view class="bar-track"><view class="bar-fill" style="width:{{item.pct}}%"></view></view>
+      <text class="bar-val">{{item.val}}</text>
+    </view>
+  </view>
+
+  <!-- 菜品/品类热度榜 -->
+  <view class="card" wx:if="{{itemHeat.length}}">
+    <view class="card-title"><view class="dot"></view>菜品/品类热度榜</view>
+    <view wx:for="{{itemHeat}}" wx:key="name" class="bar-row">
+      <text class="bar-name">{{item.name}}</text>
+      <view class="bar-track"><view class="bar-fill" style="width:{{item.pct}}%"></view></view>
+      <text class="bar-val">{{item.val}}</text>
+    </view>
+  </view>
+
+  <!-- 价格敏感度分布 -->
+  <view class="card" wx:if="{{prices.length}}">
+    <view class="card-title"><view class="dot"></view>价格敏感度分布</view>
+    <view wx:for="{{prices}}" wx:key="name" class="bar-row">
+      <text class="bar-name">{{item.name}}</text>
+      <view class="bar-track"><view class="bar-fill" style="width:{{item.pct}}%"></view></view>
+      <text class="bar-val">{{item.val}}</text>
+    </view>
+  </view>
+
+  <!-- 情感分布 -->
+  <view class="card" wx:if="{{sentiments.length}}">
+    <view class="card-title"><view class="dot"></view>情感倾向分布</view>
+    <view class="chips">
+      <view wx:for="{{sentiments}}" wx:key="name" class="chip">{{item.name}} · {{item.val}}</view>
+    </view>
+  </view>
+
+  <view class="footbar">
+    <button class="btn btn-primary" bindtap="goCampaigns">基于趋势生成活动</button>
+  </view>
+</view>

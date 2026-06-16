@@ -1,0 +1,41 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">店铺建档</view>
+    <view class="hero-sub">填好关键信息，AI 才能生成贴合你店的方案</view>
+  </view>
+
+  <view class="card">
+    <view class="field">
+      <view class="field-label">店名<text class="req">*</text></view>
+      <input class="input" value="{{form.name}}" data-key="name" bindinput="onInput" placeholder="如：北门鸡排饭" />
+    </view>
+    <view class="field">
+      <view class="field-label">学校</view>
+      <input class="input" value="{{form.school}}" data-key="school" bindinput="onInput" placeholder="如：大连理工大学盘锦校区" />
+    </view>
+    <view class="field">
+      <view class="field-label">店铺类型<text class="req">*</text></view>
+      <input class="input" value="{{form.type}}" data-key="type" bindinput="onInput" placeholder="如：快餐 / 鸡排饭" />
+    </view>
+    <view class="field">
+      <view class="field-label">客单价（元）<text class="req">*</text></view>
+      <input class="input" type="digit" value="{{form.price}}" data-key="price" bindinput="onInput" placeholder="如：18" />
+    </view>
+    <view class="field">
+      <view class="field-label">主打菜品<text class="req">*</text></view>
+      <input class="input" value="{{form.signature}}" data-key="signature" bindinput="onInput" placeholder="如：招牌鸡排饭" />
+    </view>
+    <view class="field">
+      <view class="field-label">淡时段</view>
+      <input class="input" value="{{form.idleTime}}" data-key="idleTime" bindinput="onInput" placeholder="如：下午 15:00-17:00" />
+    </view>
+    <view class="field">
+      <view class="field-label">当前问题</view>
+      <textarea class="textarea" value="{{form.problem}}" data-key="problem" bindinput="onInput" placeholder="如：晚自习后和下午课间客流不足" />
+    </view>
+  </view>
+
+  <view class="footbar">
+    <button class="btn btn-primary" bindtap="next">下一步，选择增长目标</button>
+  </view>
+</view>

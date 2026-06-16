@@ -1,0 +1,75 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">效果复盘报告</view>
+    <view class="hero-sub">{{campaignName}}</view>
+  </view>
+
+  <!-- 无数据 -->
+  <view wx:if="{{!report}}" class="notice empty">暂无活动反馈，请先完成一次活动并记录核销。</view>
+
+  <block wx:if="{{report}}">
+    <view wx:if="{{source === 'ai'}}" class="notice" style="background:#EAF7EC;color:#0C7A2E;border-color:#BFE9C7">✓ 由 AI 实时生成</view>
+    <view wx:else class="notice">已使用演示样例生成</view>
+
+    <!-- 数字卡片 -->
+    <view class="stat-grid">
+      <view class="stat"><view class="stat-num">{{redeem}}</view><view class="stat-label">核销数</view></view>
+      <view class="stat"><view class="stat-num">{{sales}}</view><view class="stat-label">销售额(元)</view></view>
+      <view class="stat"><view class="stat-num">{{avg}}</view><view class="stat-label">单均(元)</view></view>
+    </view>
+
+    <!-- 活动表现条形图 -->
+    <view class="card">
+      <view class="card-title"><view class="dot"></view>活动表现（本次 / 参考目标）</view>
+      <view wx:for="{{perf}}" wx:key="name" class="bar-row">
+        <text class="bar-name">{{item.name}}</text>
+        <view class="bar-track"><view class="bar-fill" style="width:{{item.pct}}%"></view></view>
+        <text class="bar-val">{{item.val}}/{{item.target}}</text>
+      </view>
+    </view>
+
+    <!-- 是否继续 -->
+    <view class="card verdict {{report.shouldContinue ? 'go' : 'stop'}}">
+      <view class="verdict-icon">{{report.shouldContinue ? '👍' : '🤔'}}</view>
+      <view>
+        <view class="verdict-title">{{report.shouldContinue ? '建议继续' : '建议调整'}}</view>
+        <view class="muted" style="color:var(--ink-2)">{{report.continueAdvice}}</view>
+      </view>
+    </view>
+
+    <!-- 表现总结 -->
+    <view class="card">
+      <view class="card-title"><view class="dot"></view>表现总结</view>
+      <view class="muted" style="color:var(--ink-2)">{{report.summary}}</view>
+    </view>
+
+    <!-- 表现好的原因 -->
+    <view class="card">
+      <view class="card-title"><view class="dot"></view>表现原因</view>
+      <view wx:for="{{report.reasons}}" wx:key="*this" class="li ok-li">· {{item}}</view>
+    </view>
+
+    <!-- 风险问题 -->
+    <view class="card">
+      <view class="card-title"><view class="dot"></view>问题与风险</view>
+      <view wx:for="{{report.risks}}" wx:key="*this" class="li risk-li">· {{item}}</view>
+    </view>
+
+    <!-- 下周建议 -->
+    <view class="card">
+      <view class="card-title"><view class="dot"></view>下周建议</view>
+      <view wx:for="{{report.nextWeekSuggestions}}" wx:key="*this" class="li">· {{item}}</view>
+    </view>
+
+    <!-- 调整点 -->
+    <view class="card" wx:if="{{report.adjustments.length}}">
+      <view class="card-title"><view class="dot"></view>具体调整点</view>
+      <view wx:for="{{report.adjustments}}" wx:key="*this" class="tag">{{item}}</view>
+    </view>
+  </block>
+
+  <view class="footbar">
+    <button class="btn btn-plain" bindtap="exportSummary">导出摘要</button>
+    <button class="btn btn-primary" bindtap="regenerate">重新生成活动</button>
+  </view>
+</view>

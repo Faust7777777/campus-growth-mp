@@ -1,0 +1,9 @@
+.stat-grid { margin-bottom: 24rpx; }
+.verdict { display: flex; align-items: center; }
+.verdict-icon { font-size: 56rpx; margin-right: 24rpx; }
+.verdict-title { font-size: 32rpx; font-weight: 800; margin-bottom: 4rpx; }
+.verdict.go { background: linear-gradient(135deg, #EAF7EC, #fff); border-left: 8rpx solid var(--ok); }
+.verdict.stop { background: linear-gradient(135deg, #FFF7E8, #fff); border-left: 8rpx solid var(--warn); }
+.li { font-size: 27rpx; color: var(--ink-2); line-height: 1.8; margin-bottom: 8rpx; }
+.ok-li { color: #0C7A2E; }
+.risk-li { color: #A35200; }

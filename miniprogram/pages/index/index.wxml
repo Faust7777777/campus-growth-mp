@@ -1,0 +1,45 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">校园小店 AI 增长参谋</view>
+    <view class="hero-sub">把经营目标，变成可执行的校园增长动作</view>
+  </view>
+
+  <view class="card" wx:if="{{store}}">
+    <view class="card-title"><view class="dot"></view>我的店铺</view>
+    <view class="store-head">
+      <view class="store-logo">🍗</view>
+      <view class="store-meta">
+        <view class="store-name">{{store.name}}</view>
+        <view class="muted">{{store.school}}</view>
+      </view>
+    </view>
+    <view class="row-line"><text class="row-k">店铺类型</text><text class="row-v">{{store.type}}</text></view>
+    <view class="row-line"><text class="row-k">客单价</text><text class="row-v">{{store.price}} 元</text></view>
+    <view class="row-line"><text class="row-k">主打菜品</text><text class="row-v">{{store.signature}}</text></view>
+    <view class="row-line"><text class="row-k">淡时段</text><text class="row-v">{{store.idleTime}}</text></view>
+  </view>
+
+  <view class="card tip-card">
+    <view class="card-title"><view class="dot"></view>今日建议</view>
+    <view class="muted" style="color:var(--ink-2)">{{tip}}</view>
+  </view>
+
+  <view class="flow-card card">
+    <view class="card-title"><view class="dot"></view>增长闭环</view>
+    <view class="flow">
+      <text class="flow-step">建档</text><text class="flow-arrow">›</text>
+      <text class="flow-step">定目标</text><text class="flow-arrow">›</text>
+      <text class="flow-step">看趋势</text><text class="flow-arrow">›</text>
+      <text class="flow-step">出方案</text><text class="flow-arrow">›</text>
+      <text class="flow-step">核销</text><text class="flow-arrow">›</text>
+      <text class="flow-step">复盘</text>
+    </view>
+  </view>
+
+  <view class="reset-link" bindtap="resetDemo">↻ 重置演示数据</view>
+
+  <view class="footbar">
+    <button class="btn btn-plain" bindtap="viewReport">查看复盘</button>
+    <button class="btn btn-primary" bindtap="startFlow">开始生成方案</button>
+  </view>
+</view>

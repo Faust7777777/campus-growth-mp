@@ -1,0 +1,13 @@
+.goal-item {
+  display: flex; align-items: center;
+  background: #fff; border-radius: 20rpx; padding: 28rpx 26rpx; margin-bottom: 20rpx;
+  border: 2rpx solid transparent; box-shadow: 0 6rpx 20rpx rgba(31,35,41,0.05);
+}
+.goal-item.active { border-color: var(--brand); background: var(--brand-soft); }
+.goal-radio {
+  width: 44rpx; height: 44rpx; border-radius: 50%; border: 3rpx solid var(--ink-3);
+  margin-right: 24rpx; flex-shrink: 0; color: #fff; font-size: 28rpx;
+  display: flex; align-items: center; justify-content: center;
+}
+.goal-item.active .goal-radio { background: var(--brand); border-color: var(--brand); }
+.goal-name { font-size: 32rpx; font-weight: 700; margin-bottom: 6rpx; }

@@ -1,0 +1,29 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">记录核销反馈</view>
+    <view class="hero-sub">填好真实数据，AI 才能给出靠谱复盘</view>
+  </view>
+
+  <view class="card" wx:if="{{form}}">
+    <view class="field">
+      <view class="field-label">核销数<text class="req">*</text></view>
+      <input class="input" type="digit" value="{{form.redeemCount}}" data-key="redeemCount" bindinput="onInput" placeholder="如：23" />
+    </view>
+    <view class="field">
+      <view class="field-label">估算销售额（元）<text class="req">*</text></view>
+      <input class="input" type="digit" value="{{form.estSales}}" data-key="estSales" bindinput="onInput" placeholder="如：386" />
+    </view>
+    <view class="field">
+      <view class="field-label">顾客反馈</view>
+      <textarea class="textarea" value="{{form.customerFeedback}}" data-key="customerFeedback" bindinput="onInput" placeholder="顾客的真实评价" />
+    </view>
+    <view class="field">
+      <view class="field-label">老板评价</view>
+      <textarea class="textarea" value="{{form.ownerNote}}" data-key="ownerNote" bindinput="onInput" placeholder="你自己的观察，如利润、出餐压力" />
+    </view>
+  </view>
+
+  <view class="footbar">
+    <button class="btn btn-primary" loading="{{submitting}}" bindtap="submit">生成复盘报告</button>
+  </view>
+</view>

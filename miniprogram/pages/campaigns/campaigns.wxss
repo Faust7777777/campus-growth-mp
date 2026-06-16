@@ -1,0 +1,10 @@
+.camp-card { border-left: 8rpx solid var(--brand); }
+.camp-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12rpx; }
+.camp-name { font-size: 34rpx; font-weight: 800; }
+.camp-token { background: var(--brand-soft); color: var(--brand-deep); font-size: 23rpx; padding: 6rpx 18rpx; border-radius: 999rpx; font-weight: 600; }
+.camp-scene { color: var(--ink-2); font-size: 26rpx; margin-bottom: 14rpx; }
+.camp-row { display: flex; margin-bottom: 10rpx; font-size: 26rpx; }
+.camp-row .ck { color: var(--ink-3); width: 130rpx; flex-shrink: 0; }
+.camp-row .cv { color: var(--ink); flex: 1; }
+.camp-risk { color: #A35200; background: #FFF7E8; border-radius: 12rpx; padding: 12rpx 18rpx; font-size: 24rpx; margin: 12rpx 0; }
+.camp-more { color: var(--brand); font-size: 26rpx; text-align: right; font-weight: 600; }

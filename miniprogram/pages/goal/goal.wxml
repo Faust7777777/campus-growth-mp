@@ -1,0 +1,25 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">想达成什么目标？</view>
+    <view class="hero-sub">选一个最想解决的，AI 会围绕它生成方案</view>
+  </view>
+
+  <view class="goal-list">
+    <view
+      wx:for="{{options}}"
+      wx:key="*this"
+      class="goal-item {{goal === item ? 'active' : ''}}"
+      data-goal="{{item}}"
+      bindtap="pick">
+      <view class="goal-radio">{{goal === item ? '✓' : ''}}</view>
+      <view class="goal-body">
+        <view class="goal-name">{{item}}</view>
+        <view class="muted">{{desc[item]}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footbar">
+    <button class="btn btn-primary" bindtap="generate">生成校园增长方案</button>
+  </view>
+</view>

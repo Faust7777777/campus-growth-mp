@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">AI 生成的活动方案</view>
+    <view class="hero-sub">目标：{{goal}} · 共 3 个可落地方案</view>
+  </view>
+
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <view class="spinner"></view>
+    <view>正在生成适合校园场景的活动方案…</view>
+  </view>
+
+  <block wx:else>
+    <view wx:if="{{source === 'ai'}}" class="notice" style="background:#EAF7EC;color:#0C7A2E;border-color:#BFE9C7">✓ 由 AI 实时生成</view>
+    <view wx:else class="notice">已使用演示样例生成（AI 未配置或调用失败）</view>
+
+    <view
+      wx:for="{{campaigns}}"
+      wx:key="id"
+      class="camp-card card"
+      data-idx="{{index}}"
+      bindtap="openDetail">
+      <view class="camp-head">
+        <view class="camp-name">{{item.name}}</view>
+        <view class="camp-token">口令 {{item.token}}</view>
+      </view>
+      <view class="camp-scene">📍 {{item.scene}}</view>
+      <view class="camp-row"><text class="ck">推荐套餐</text><text class="cv">{{item.comboName}}</text></view>
+      <view class="camp-row"><text class="ck">吸引点</text><text class="cv">{{item.expectedHook}}</text></view>
+      <view class="camp-risk">⚠ {{item.risk}}</view>
+      <view class="camp-more">查看执行物料 ›</view>
+    </view>
+  </block>
+
+  <view class="footbar" wx:if="{{!loading}}">
+    <button class="btn btn-plain" bindtap="retry">重新生成</button>
+    <button class="btn btn-primary" bindtap="openDetail" data-idx="0">查看第一个方案</button>
+  </view>
+</view>

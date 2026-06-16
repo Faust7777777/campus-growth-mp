@@ -1,0 +1,33 @@
+<view class="page" wx:if="{{c}}">
+  <view class="hero">
+    <view class="hero-title">{{c.name}}</view>
+    <view class="hero-sub">{{c.scene}}</view>
+  </view>
+
+  <!-- 活动详情 -->
+  <view class="card">
+    <view class="card-title"><view class="dot"></view>活动详情</view>
+    <view class="row-line"><text class="row-k">推荐套餐</text><text class="row-v">{{c.comboName}}</text></view>
+    <view class="row-line"><text class="row-k">价格建议</text><text class="row-v">{{c.priceSuggestion}}</text></view>
+    <view class="row-line"><text class="row-k">优惠口令</text><text class="row-v">{{c.token}}</text></view>
+    <view class="row-line"><text class="row-k">发布时间</text><text class="row-v">{{c.publishTime}}</text></view>
+    <view class="combo-tags">
+      <view wx:for="{{c.comboItems}}" wx:key="*this" class="tag">{{item}}</view>
+    </view>
+    <view class="camp-risk">⚠ {{c.risk}}</view>
+  </view>
+
+  <!-- 内容物料 -->
+  <view class="section-title"><view class="dot"></view>内容物料（可一键复制）</view>
+  <view wx:for="{{copyBlocks}}" wx:key="key" class="card copy-card">
+    <view class="copy-head">
+      <text class="copy-label">{{item.label}}</text>
+      <view class="copy-btn" data-text="{{item.text}}" bindtap="copyText">复制文案</view>
+    </view>
+    <view class="copy-text">{{item.text}}</view>
+  </view>
+
+  <view class="footbar">
+    <button class="btn btn-primary" bindtap="goFeedback">去记录核销</button>
+  </view>
+</view>
