@@ -3,3 +3,4 @@ backend/.env
 *.log
 .DS_Store
 data/store_history.jsonl
+miniprogram/project.private.config.json
