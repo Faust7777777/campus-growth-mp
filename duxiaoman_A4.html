@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>校园小店 AI 活动试错引擎 · 机会验证</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root{
+    --brand:#FF6B35; --deep:#E8551E; --soft:#FFF1EA; --ink:#1f2329; --ink2:#4e5969; --ink3:#86909c;
+    --line:#e9ebef; --ok:#0C7A2E; --okbg:#EAF7EC; --warn:#A35200; --blue:#3A4BC0; --bluebg:#EEF2FF;
+  }
+  html,body{ background:#f0f1f3; }
+  body{ font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; color:var(--ink); }
+  .page{ width:210mm; min-height:297mm; background:#fff; margin:0 auto; padding:8mm 9mm; }
+  /* 头 */
+  .top{ display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5pt solid var(--brand); padding-bottom:4pt; }
+  .title{ font-size:17pt; font-weight:800; letter-spacing:.3pt; }
+  .title .accent{ color:var(--brand); }
+  .sub{ font-size:8.2pt; color:var(--ink2); margin-top:2pt; line-height:1.3; }
+  .top-right{ text-align:right; font-size:7pt; color:var(--ink3); line-height:1.5; min-width:54mm; }
+  .top-right b{ color:var(--ink2); }
+  .links a, .links span{ display:inline-block; background:var(--soft); color:var(--deep); border:.5pt dashed var(--brand); border-radius:3pt; padding:1pt 5pt; font-size:7pt; margin-left:3pt; text-decoration:none; }
+  /* 分节标题 */
+  .sec{ margin-top:6pt; }
+  h2{ font-size:9.5pt; font-weight:800; color:var(--ink); display:flex; align-items:center; gap:5pt; }
+  h2::before{ content:""; width:3.5pt; height:11pt; background:var(--brand); border-radius:2pt; }
+  h2 .tag{ font-size:6.8pt; font-weight:600; color:#fff; background:var(--brand); border-radius:6pt; padding:0 5pt; }
+  .body{ font-size:8.2pt; line-height:1.5; color:var(--ink2); margin-top:2.5pt; }
+  .body b{ color:var(--ink); }
+  .story{ background:#f7f8fa; border-left:2.5pt solid var(--brand); border-radius:0 4pt 4pt 0; padding:3pt 7pt; font-size:8.2pt; line-height:1.45; }
+  .story b{ color:var(--deep); }
+  /* 图表区 */
+  .charts{ display:grid; grid-template-columns:1.05fr 1fr 1fr 1fr; gap:5pt; margin-top:4pt; }
+  .chart{ border:.5pt solid var(--line); border-radius:5pt; padding:4pt 6pt 5pt; }
+  .chart .ct{ font-size:7.4pt; font-weight:700; color:var(--ink); margin-bottom:3pt; }
+  .chart .cs{ font-size:6pt; color:var(--ink3); font-weight:400; }
+  .row{ display:flex; align-items:center; margin-bottom:2pt; font-size:6.6pt; color:var(--ink2); }
+  .row .nm{ width:40pt; flex-shrink:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .row .tk{ flex:1; height:6.5pt; background:#f0f1f3; border-radius:4pt; overflow:hidden; margin:0 3pt; }
+  .row .fl{ height:100%; background:linear-gradient(90deg,#FF9A6B,var(--brand)); border-radius:4pt; }
+  .row .vl{ width:30pt; text-align:right; flex-shrink:0; color:var(--ink3); }
+  /* 漏斗 */
+  .funnel .fr{ margin-bottom:2.5pt; }
+  .funnel .fbar{ background:linear-gradient(90deg,var(--brand),#FF9A6B); color:#fff; font-size:6.4pt; font-weight:700; padding:1.5pt 5pt; border-radius:3pt; white-space:nowrap; }
+  .funnel .fl-lab{ font-size:6pt; color:var(--ink3); }
+  /* 痛点 */
+  .pains{ margin-top:4pt; display:grid; grid-template-columns:1fr 1fr 1fr; gap:5pt; }
+  .pain{ background:#fafbfc; border:.5pt solid var(--line); border-radius:5pt; padding:4pt 6pt; }
+  .pain .ph{ font-size:7.6pt; font-weight:800; color:var(--deep); }
+  .pain .pd{ font-size:7pt; color:var(--ink2); line-height:1.4; margin-top:1.5pt; }
+  .pain .src{ font-size:6.4pt; color:var(--ok); background:var(--okbg); border-radius:3pt; padding:.5pt 3pt; display:inline-block; margin-top:2pt; }
+  .pain .src.hy{ color:var(--warn); background:#FFF7E8; }
+  .insight{ margin-top:4pt; font-size:8pt; line-height:1.45; color:var(--ink); background:var(--bluebg); border-radius:5pt; padding:4pt 8pt; }
+  .insight b{ color:var(--blue); }
+  /* MVP */
+  .flowline{ font-size:7.6pt; color:var(--ink2); background:#f7f8fa; border-radius:4pt; padding:3pt 7pt; margin-top:2.5pt; }
+  .flowline b{ color:var(--ink); }
+  .cards3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:5pt; margin-top:4pt; }
+  .c3{ border:.5pt solid var(--line); border-radius:5pt; padding:4pt 6pt; }
+  .c3 .h{ font-size:7.8pt; font-weight:800; color:var(--ink); }
+  .c3 .h .b{ font-size:6.2pt; font-weight:700; color:#fff; background:var(--ok); border-radius:5pt; padding:0 4pt; margin-left:3pt; }
+  .c3 .d{ font-size:6.9pt; color:var(--ink2); line-height:1.38; margin-top:1.5pt; }
+  .bound{ font-size:6.9pt; color:var(--ink3); margin-top:3pt; font-style:normal; }
+  .bound b{ color:var(--warn); }
+  /* 底部两栏 */
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:8pt; margin-top:6pt; }
+  .kv{ font-size:7.5pt; line-height:1.5; color:var(--ink2); }
+  .kv .k{ color:var(--ink); font-weight:700; }
+  .steps{ font-size:7.3pt; line-height:1.5; color:var(--ink2); }
+  .kill{ font-size:7.2pt; color:var(--ink); background:var(--okbg); border-radius:4pt; padding:3pt 7pt; margin-top:3pt; }
+  /* 指标体系表 */
+  .mtab{ width:100%; border-collapse:collapse; margin-top:3pt; font-size:7pt; }
+  .mtab th{ background:var(--soft); color:var(--deep); font-weight:700; text-align:left; padding:2.5pt 5pt; border:.5pt solid #f3ddd1; }
+  .mtab td{ padding:2.5pt 5pt; border:.5pt solid var(--line); color:var(--ink2); vertical-align:top; line-height:1.34; }
+  .mtab td:first-child{ font-weight:700; color:var(--ink); white-space:nowrap; }
+  .mtab td:nth-child(3){ color:var(--ok); font-weight:700; white-space:nowrap; }
+  /* 小程序界面样机 */
+  .screens{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10pt; margin-top:4pt; }
+  .phone{ border:1.5pt solid #d4d8df; border-radius:11pt; background:#F5F6F8; overflow:hidden; box-shadow:0 1pt 3pt rgba(0,0,0,.07); }
+  .phone .nav{ background:linear-gradient(135deg,#FF6B35,#E8551E); color:#fff; font-size:7pt; font-weight:700; text-align:center; padding:5pt 0 4pt; }
+  .phone .scr{ padding:5pt 6pt 7pt; }
+  .ph-hero{ background:linear-gradient(135deg,#FF6B35,#E8551E); color:#fff; border-radius:5pt; padding:4pt 6pt; font-size:7pt; font-weight:700; }
+  .ph-hero small{ display:block; font-weight:400; font-size:5.6pt; opacity:.92; margin-top:1pt; }
+  .ph-stats{ display:flex; gap:3pt; margin-top:4pt; }
+  .ph-stat{ flex:1; background:#fff; border-radius:4pt; padding:3pt 0; text-align:center; }
+  .ph-stat b{ display:block; font-size:8.5pt; color:var(--deep); font-weight:800; }
+  .ph-stat span{ font-size:5pt; color:var(--ink3); }
+  .ph-card{ background:#fff; border-radius:5pt; padding:4pt 6pt; margin-top:4pt; overflow:hidden; }
+  .ph-row{ display:flex; align-items:center; font-size:5.6pt; color:var(--ink2); margin-bottom:1.8pt; }
+  .ph-row .n{ width:28pt; flex-shrink:0; } .ph-row .t{ flex:1; height:4pt; background:#eef0f3; border-radius:3pt; margin:0 2pt; overflow:hidden; } .ph-row .f{ height:100%; background:linear-gradient(90deg,#FF9A6B,var(--brand)); display:block; } .ph-row .v{ width:14pt; text-align:right; flex-shrink:0; color:var(--ink3); }
+  .ph-title{ font-size:7.4pt; font-weight:800; color:var(--ink); }
+  .ph-tk{ font-size:5.4pt; color:var(--deep); background:var(--soft); border-radius:5pt; padding:.5pt 4pt; float:right; }
+  .ph-sub{ font-size:5.8pt; color:var(--ink2); margin-top:2pt; line-height:1.38; }
+  .ph-margin{ display:flex; gap:2pt; margin-top:3pt; }
+  .ph-margin > div{ flex:1; background:#f7f8fa; border-radius:3pt; text-align:center; padding:2pt 0; }
+  .ph-margin b{ display:block; font-size:6.6pt; color:var(--ink); } .ph-margin b.ok{ color:var(--ok); } .ph-margin span{ font-size:4.6pt; color:var(--ink3); }
+  .ph-badge{ font-size:5.4pt; color:var(--ok); background:var(--okbg); border-radius:3pt; padding:1pt 4pt; margin-top:3pt; display:inline-block; }
+  .ph-code{ font-size:9pt; font-weight:800; letter-spacing:.6pt; color:var(--deep); background:var(--soft); border:.5pt dashed var(--brand); border-radius:4pt; padding:2pt 0; margin-top:2pt; text-align:center; }
+  .ph-verdict{ display:flex; align-items:center; gap:4pt; background:linear-gradient(135deg,#EAF7EC,#fff); border-left:2pt solid var(--ok); border-radius:4pt; padding:3pt 6pt; margin-top:4pt; font-size:9pt; }
+  .ph-verdict b{ font-size:7.2pt; color:var(--ink); }
+  .foot{ margin-top:6pt; border-top:.5pt solid var(--line); padding-top:3pt; font-size:7.4pt; color:var(--ink3); text-align:center; }
+  .foot b{ color:var(--deep); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top">
+    <div>
+      <div class="title">校园小店 <span class="accent">AI 活动试错引擎</span></div>
+      <div class="sub">帮校园周边小店在“食堂之外”的加餐 / 饮品 / 轻正餐场景里，低风险做一场能核销、能复盘的活动</div>
+    </div>
+    <div class="top-right">
+      <div>度小满“小满摘星计划” · 机会验证 · <b>方向一 小微AI</b></div>
+      <div>数据来源：<b>大连理工大学（盘锦校区）</b>本人校园 QQ 群</div>
+      <div class="links" style="margin-top:2pt;"><span>代码仓库：[待填]</span><span>实机演示：[待填]</span></div>
+    </div>
+  </div>
+
+  <!-- 1 机会判断 -->
+  <div class="sec">
+    <h2>1 · 机会判断 <span class="tag">谁 / 痛点 / 为何现在</span></h2>
+    <div class="story" style="margin-top:3pt;">
+      <b>作为</b>校园周边 1–3 人经营、没有专职运营的小店老板（咖啡、奶茶、汉堡、外卖夜宵这类“食堂之外”的店），<b>我想</b>知道什么时段做什么活动能把学生拉过来、又不亏钱、做完还能看出到底有没有效果。
+    </div>
+    <div class="body">
+      <b>核心判断：</b>学生日常吃饭默认回食堂（便宜、近、不用想），小店和食堂拼正餐比价会输；机会在食堂顾不上的时段。
+      <b>为什么现在：</b>大模型让“活动策划 + 文案 + 复盘”能低成本自动化，而微信小程序、社群、团购券码已是小店现成触点，产品可以很轻地嵌进老板已有的工作流。
+    </div>
+  </div>
+
+  <!-- 2 用户证据 / 数据分析 -->
+  <div class="sec">
+    <h2>2 · 用户证据：从真实校园群清洗出消费信号 <span class="tag">数据分析</span></h2>
+    <div class="body" style="margin-top:2pt;">
+      我导出了自己学校（大连理工盘锦）一个大学 QQ 群近 3 个月、<b>93,618 条</b>聊天。真实校园群什么都聊、噪音大，所以我搭了一条 AI 管线分批打标、逐层清洗，把消费相关的内容提炼出来——<b>这道清洗本身就是产品的核心数据能力</b>。数据层<b>合规接入</b>美团公开评论、QQ 频道 / 群、贴吧等多源并脱敏，本份分析以校园 QQ 群样本跑通。
+    </div>
+    <div class="charts">
+      <div class="chart funnel">
+        <div class="ct">① 清洗漏斗 <span class="cs">DeepSeek 打标</span></div>
+        <div class="fr"><div class="fbar" style="width:100%">全部消息 93,618</div></div>
+        <div class="fr"><div class="fbar" style="width:74%">关键词初筛 13,117</div></div>
+        <div class="fr"><div class="fbar" style="width:70%">AI 打标 12,821</div></div>
+        <div class="fr"><div class="fbar" style="width:42%;background:linear-gradient(90deg,var(--ok),#3FB36B)">消费相关 5,029</div></div>
+        <div class="fl-lab">9.3 万噪音 → 5 千可用消费信号</div>
+      </div>
+      <div class="chart">
+        <div class="ct">② 高频关键词 <span class="cs">前 7</span></div>
+        <div class="row"><span class="nm">吃</span><span class="tk"><span class="fl" style="width:100%"></span></span><span class="vl">950</span></div>
+        <div class="row"><span class="nm">好吃</span><span class="tk"><span class="fl" style="width:26%"></span></span><span class="vl">246</span></div>
+        <div class="row"><span class="nm">食堂</span><span class="tk"><span class="fl" style="width:23%"></span></span><span class="vl">221</span></div>
+        <div class="row"><span class="nm">贵</span><span class="tk"><span class="fl" style="width:19%"></span></span><span class="vl">183</span></div>
+        <div class="row"><span class="nm">想吃</span><span class="tk"><span class="fl" style="width:19%"></span></span><span class="vl">182</span></div>
+        <div class="row"><span class="nm">喝</span><span class="tk"><span class="fl" style="width:17%"></span></span><span class="vl">159</span></div>
+        <div class="row"><span class="nm">三食堂</span><span class="tk"><span class="fl" style="width:16%"></span></span><span class="vl">151</span></div>
+      </div>
+      <div class="chart">
+        <div class="ct">③ 消费场景 <span class="cs">已去“其他”桶</span></div>
+        <div class="row"><span class="nm">午高峰</span><span class="tk"><span class="fl" style="width:100%"></span></span><span class="vl">337</span></div>
+        <div class="row"><span class="nm">晚自习夜宵</span><span class="tk"><span class="fl" style="width:25%"></span></span><span class="vl">84</span></div>
+        <div class="row"><span class="nm">周末聚餐</span><span class="tk"><span class="fl" style="width:17%"></span></span><span class="vl">57</span></div>
+        <div class="row"><span class="nm">下课课间</span><span class="tk"><span class="fl" style="width:16%"></span></span><span class="vl">55</span></div>
+        <div class="row"><span class="nm">外卖拼单</span><span class="tk"><span class="fl" style="width:10%"></span></span><span class="vl">32</span></div>
+        <div class="row"><span class="nm">考试周</span><span class="tk"><span class="fl" style="width:7%"></span></span><span class="vl">25</span></div>
+      </div>
+      <div class="chart">
+        <div class="ct">④ 价格带 & 情感 <span class="cs">价敏 / 口碑</span></div>
+        <div class="row"><span class="nm">价·低</span><span class="tk"><span class="fl" style="width:100%"></span></span><span class="vl">378</span></div>
+        <div class="row"><span class="nm">价·高</span><span class="tk"><span class="fl" style="width:61%"></span></span><span class="vl">231</span></div>
+        <div class="row"><span class="nm">价·中</span><span class="tk"><span class="fl" style="width:24%"></span></span><span class="vl">90</span></div>
+        <div class="row"><span class="nm">情·中性</span><span class="tk"><span class="fl" style="width:100%;background:#c9ced6"></span></span><span class="vl">3021</span></div>
+        <div class="row"><span class="nm">情·正向</span><span class="tk"><span class="fl" style="width:35%;background:#3FB36B"></span></span><span class="vl">1046</span></div>
+        <div class="row"><span class="nm">情·负向</span><span class="tk"><span class="fl" style="width:32%;background:#F2766B"></span></span><span class="vl">962</span></div>
+      </div>
+    </div>
+
+    <div class="pains">
+      <div class="pain">
+        <div class="ph">痛点① 学生价敏，食堂是默认锚</div>
+        <div class="pd">最高频词是“食堂 / 三食堂”，“贵”进前五，价格带集中在“低”。学生要一个值得离开食堂的理由。</div>
+        <div class="src">来源：图②③④ 真实计数</div>
+      </div>
+      <div class="pain">
+        <div class="ph">痛点② 需求在食堂不在场的时段</div>
+        <div class="pd">去掉“其他”，场景前列是午高峰、晚自习夜宵、课间、外卖拼单——正是食堂排队久或已关门的窗口。</div>
+        <div class="src">来源：图③ 场景分布</div>
+      </div>
+      <div class="pain">
+        <div class="ph">痛点③ 老板缺运营、怕乱试</div>
+        <div class="pd">打折打到亏、出餐爆单、做完不知有没有用。962 条负向反馈也显示体验问题真实存在。</div>
+        <div class="src hy">假设：图④负向 + 待 D3–5 访谈验证</div>
+      </div>
+    </div>
+    <div class="insight">
+      <b>数据修正了我的初始假设：</b>原以为机会在炸串 / 夜宵，但清洗后更高频的是食堂、汉堡、咖啡、奶茶、外卖。因此产品切口锁定<b>“食堂之外的加餐 / 饮品 / 轻正餐”</b>，避开与食堂正面比价。
+    </div>
+  </div>
+
+  <!-- 3 MVP -->
+  <div class="sec">
+    <h2>3 · MVP：可跑通的微信小程序 Demo <span class="tag">真 AI 闭环</span></h2>
+    <div class="flowline">
+      <b>已跑通 8 页闭环：</b>店铺建档 → 选增长目标 → 看校园趋势 → AI 生成 3 个活动 → 执行物料 → 核销 → AI 复盘。后端调用 DeepSeek 生成活动包与复盘，失败自动回退；做法为“聚合数据 + 规则排序 + LLM 结构化生成”。
+    </div>
+    <div class="cards3">
+      <div class="c3">
+        <div class="h">成本护栏 <span class="b">防亏</span></div>
+        <div class="d">菜单录入食材成本，系统核算套餐毛利，低于底线自动上调并标记，从机制上保证不亏。</div>
+      </div>
+      <div class="c3">
+        <div class="h">核销码 <span class="b">可识别</span></div>
+        <div class="d">每个活动一个唯一码，销售额按“核销数 × 活动价”自动计算，不再靠老板手填两个数字。</div>
+      </div>
+      <div class="c3">
+        <div class="h">历史飞轮 <span class="b">越用越准</span></div>
+        <div class="d">每次生成与复盘落盘，下次生成回灌本店历史摘要，前端显示“已参考本店 N 场历史”。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 商业判断 -->
+  <div class="sec">
+    <h2>4 · 商业判断</h2>
+    <div class="kv" style="margin-top:2pt;">
+      <span class="k">谁付费：</span>有学生客流、却没有运营能力的小店老板，用月费换“少乱打折、少试错、知道哪些活动真有效”。
+      <span class="k">ROI：</span>按综合经营毛利约 30% 估，月费 69 元约需 13 单可识别增量订单即回本；若同时减少滞销食材，理由更稳。
+      <span class="k">定价 / 获客：</span>验证期免费换案例；商业化主推学期包 199–299 元（避开寒暑假流失），单次包 9.9–19.9 元做尝鲜，订阅解锁历史回灌与主动推送。地推只用于前 3–5 家拿样本，规模化靠校园合伙人 + 免费“校园消费诊断”钩子 + 同商圈复制，目标 CAC&lt;50 元。
+      <span class="k">长期：</span>商户授权与合规前提下，经营数据可沉淀为小微商户经营画像，补充度小满小微服务场景。
+    </div>
+  </div>
+
+  <!-- 5 两周验证计划 -->
+  <div class="sec">
+    <h2>5 · 两周验证计划 <span class="tag">AARRR 全漏斗 × Sean Ellis PMF</span></h2>
+    <div class="body" style="margin-top:2pt;">两周走完 AARRR 获取 → 激活 → 留存 → 变现全漏斗，并用 Sean Ellis 测真实需求强度。<b>节奏：</b>D1–2 备数据与 Demo · D3–5 访谈（只问过去真实行为）· D6–9 试跑 + 核销 · D10–12 看复用 · D13–14 测付费与 PMF。</div>
+    <table class="mtab">
+      <tr><th style="width:18%">AARRR 阶段</th><th style="width:54%">通用指标（定义）</th><th style="width:28%">2 周目标</th></tr>
+      <tr><td>获取 Acquisition</td><td>访谈触达数 · 试用转化率（愿装 Demo 的店占比）</td><td>访谈 5–8、≥3 家试</td></tr>
+      <tr><td>激活 Activation</td><td>激活率（完成“建档→拿到可发布物料”核心动作）· TTFV 首次见效时长</td><td>&gt;50% · &lt;7 天</td></tr>
+      <tr><td>留存 Retention</td><td>复用率（愿做下一场活动）；长期看月留存率</td><td>≥3/5 家</td></tr>
+      <tr><td>收入 Revenue</td><td>付费转化率 · ARPU（愿付价位）· 单活动带码销售额</td><td>≥2/5 家愿付</td></tr>
+      <tr><td>推荐 Referral</td><td>转介绍率 · NPS（愿推荐给同商圈商家）</td><td>≥1 家转介绍</td></tr>
+      <tr><td>需求 / PMF</td><td>Sean Ellis 分：试用店中“没了它会非常失望”占比（≥40% 为 PMF 信号）</td><td>≥40%</td></tr>
+    </table>
+    <div class="kv" style="margin-top:3pt;">
+      <span class="k">北极星指标 North Star：</span>周活跃出活动的商家数 × 人均周活动数（经营动作密度）。<span class="k">单位经济对标：</span>LTV = ARPU × 生命周期 × 毛利率；健康线 LTV/CAC &gt; 3、CAC 回收周期 &lt; 12 月。
+    </div>
+    <div class="kill"><b>决策线：</b>AARRR 各阶段达标 且 Sean Ellis ≥40% → 扩到同校商圈；激活率 &lt;30% 或 Sean Ellis &lt;40% 或无人愿付 → 转更轻的“活动诊断工具”或更垂直的外卖 / 奶茶场景。</div>
+  </div>
+
+  <div class="foot">真实数据（大连理工盘锦校园 QQ 群）→ AI 清洗出消费信号 → 提炼痛点 → 做出能演示风险闭环的 AI 产品。<b>校园小店的“活动试错去风险化引擎”。</b></div>
+
+</div>
+</body>
+</html>
