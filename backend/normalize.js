@@ -43,14 +43,60 @@ function asArray(v) {
   return [];
 }
 
-function normalizeCampaign(c, i) {
+const MARGIN_FLOOR = 0.2; // 毛利率底线 20%
+
+// C1：由套餐菜品 + 菜单成本算成本，与活动价比对，强制毛利底线（去风险化的确定性核心）
+function computeCombo(comboItems, comboPrice, menu) {
+  const items = menu && menu.items ? menu.items : [];
+  let cost = 0;
+  let matched = 0;
+  for (const ci of comboItems) {
+    const m = items.find((it) => String(ci).includes(it.name) || it.name.includes(String(ci)));
+    if (m && typeof m.cost === 'number') {
+      cost += m.cost;
+      matched++;
+    }
+  }
+  let price = Number(comboPrice) || 0;
+  // 演示兜底：套餐项没匹配到成本时，按活动价 55% 估成本
+  if (matched === 0 && price > 0) cost = Math.round(price * 0.55);
+
+  let status = '✓ 毛利达标';
+  let blocked = false;
+  if (price <= 0) {
+    status = '价格待定';
+  } else if (price < cost) {
+    blocked = true;
+    price = Math.ceil(cost / (1 - MARGIN_FLOOR));
+    status = '⚠ 原价低于成本，已自动上调至保本线';
+  } else if ((price - cost) / price < MARGIN_FLOOR) {
+    blocked = true;
+    price = Math.ceil(cost / (1 - MARGIN_FLOOR));
+    status = `⚠ 毛利率不足 ${MARGIN_FLOOR * 100}%，已自动上调`;
+  }
+  const grossMargin = Math.max(0, price - cost);
+  const marginRate = price > 0 ? Math.round((grossMargin / price) * 100) : 0;
+  return { comboCost: cost, comboPrice: price, grossMargin, marginRate, status, blocked, matched };
+}
+
+// C3：核销码（北门鸡排 BMJP- 四位），用于可识别归因
+function makeVerifyCode() {
+  return 'BMJP-' + String(1000 + Math.floor(Math.random() * 9000));
+}
+
+function normalizeCampaign(c, i, menu) {
+  const comboItems = asArray(c.comboItems || c.items);
+  const margin = computeCombo(comboItems, c.comboPrice, menu);
   return {
     id: c.id || `c_ai_${i + 1}`,
     name: c.name || `活动方案 ${i + 1}`,
     scene: c.scene || '',
     comboName: c.comboName || c.combo || '',
-    comboItems: asArray(c.comboItems || c.items),
+    comboItems,
     priceSuggestion: c.priceSuggestion || c.price || '',
+    comboPrice: margin.comboPrice, // C1：经毛利校验后的活动价
+    margin, // C1：{comboCost, grossMargin, marginRate, status, blocked}
+    verifyCode: c.verifyCode || makeVerifyCode(), // C3：核销码
     token: c.token || '',
     expectedHook: c.expectedHook || c.hook || '',
     risk: c.risk || '',
@@ -59,4 +105,4 @@ function normalizeCampaign(c, i) {
   };
 }
 
-module.exports = { normalizeCampaign, normalizeCopy };
+module.exports = { normalizeCampaign, normalizeCopy, computeCombo };

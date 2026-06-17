@@ -3,7 +3,7 @@ const { post } = require('../../utils/request');
 const { campaignsFallback } = require('../../utils/local-fallback');
 
 Page({
-  data: { loading: true, campaigns: [], source: '', goal: '' },
+  data: { loading: true, campaigns: [], source: '', goal: '', historyCount: 0 },
 
   onLoad() {
     this.setData({ goal: app.globalData.goal });
@@ -34,6 +34,7 @@ Page({
       loading: false,
       campaigns: res.campaigns || [],
       source: res.source || '',
+      historyCount: res.historyCount || 0,
     });
   },
 

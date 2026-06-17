@@ -6,6 +6,7 @@ const campaignsFallback = {
     {
       id: 'lc1', name: '下课回血套餐', scene: '下午课间 / 犯困提神',
       comboName: '鸡米花饭 + 冰红茶', comboItems: ['鸡米花饭', '冰红茶'],
+      comboPrice: 16, margin: { comboCost: 8, grossMargin: 8, marginRate: 50, status: '✓ 毛利达标', blocked: false }, verifyCode: 'BMJP-1042',
       priceSuggestion: '原价 19 元，课间价 16 元，主打即拿即走', token: '下课回血',
       expectedHook: '课间只有 10 分钟，提前下单到点取，便宜又解馋',
       risk: '课间窗口短，需备好预包装，避免现做排队',
@@ -21,6 +22,7 @@ const campaignsFallback = {
     {
       id: 'lc2', name: '晚自习能量餐', scene: '晚自习夜宵 / 考研冲刺',
       comboName: '招牌鸡排饭 + 卤蛋 + 柠檬茶', comboItems: ['招牌鸡排饭', '卤蛋', '柠檬茶'],
+      comboPrice: 25, margin: { comboCost: 11, grossMargin: 14, marginRate: 56, status: '✓ 毛利达标', blocked: false }, verifyCode: 'BMJP-2087',
       priceSuggestion: '三件组合 25 元，主打扛饿', token: '晚自习能量',
       expectedHook: '21点后扛饿高蛋白，自习党的稳定补给',
       risk: '夜宵时段集中，建议预约到点取，控制出餐压力',
@@ -35,8 +37,9 @@ const campaignsFallback = {
     },
     {
       id: 'lc3', name: '社团拼单餐', scene: '社团团购 / 宿舍拼单',
-      comboName: '招牌鸡排饭 ×5 起拼单', comboItems: ['招牌鸡排饭', '黑椒鸡排饭', '柠檬茶'],
-      priceSuggestion: '5 份起每份减 1 元，10 份起每份减 2 元并送 2 杯冰红茶', token: '社团拼单',
+      comboName: '招牌鸡排饭 ×5 起拼单', comboItems: ['招牌鸡排饭'],
+      comboPrice: 17, margin: { comboCost: 8, grossMargin: 9, marginRate: 53, status: '✓ 毛利达标', blocked: false }, verifyCode: 'BMJP-3076',
+      priceSuggestion: '每份原价 18 元，5 份起每份 17 元，10 份起每份 16 元并送 2 杯冰红茶', token: '社团拼单',
       expectedHook: '凑齐免操心，社团/宿舍一起点更划算',
       risk: '需指定拼单发起人统一下单，避免分散订单难配齐',
       publishTime: '工作日 17:30 发群，社团例会/排练结束前',

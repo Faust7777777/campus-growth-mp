@@ -13,6 +13,7 @@
   <block wx:else>
     <view wx:if="{{source === 'ai'}}" class="notice" style="background:#EAF7EC;color:#0C7A2E;border-color:#BFE9C7">✓ 由 AI 实时生成</view>
     <view wx:else class="notice">已使用演示样例生成（AI 未配置或调用失败）</view>
+    <view wx:if="{{historyCount > 0}}" class="notice" style="background:#EEF2FF;color:#3A4BC0;border-color:#D6DEFF">🔁 已参考本店 {{historyCount}} 场历史活动生成（数据飞轮）</view>
 
     <view
       wx:for="{{campaigns}}"
@@ -26,6 +27,7 @@
       </view>
       <view class="camp-scene">📍 {{item.scene}}</view>
       <view class="camp-row"><text class="ck">推荐套餐</text><text class="cv">{{item.comboName}}</text></view>
+      <view class="camp-row" wx:if="{{item.margin}}"><text class="ck">活动价/毛利</text><text class="cv">¥{{item.comboPrice}} · 毛利率 {{item.margin.marginRate}}%（{{item.margin.status}}）</text></view>
       <view class="camp-row"><text class="ck">吸引点</text><text class="cv">{{item.expectedHook}}</text></view>
       <view class="camp-risk">⚠ {{item.risk}}</view>
       <view class="camp-more">查看执行物料 ›</view>

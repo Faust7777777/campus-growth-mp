@@ -1,1 +1,6 @@
-/* 复用全局样式 */
+.vcode-card { display: flex; flex-direction: column; gap: 10rpx; }
+.vcode-line { display: flex; align-items: center; justify-content: space-between; }
+.vcode-k { font-size: 27rpx; color: var(--ink-2); }
+.vcode-v { font-size: 36rpx; font-weight: 800; letter-spacing: 2rpx; color: var(--brand-deep); }
+.auto-sales { background: #EAF7EC; color: #0C7A2E; border-radius: 16rpx; padding: 22rpx 24rpx; font-size: 40rpx; font-weight: 800; }
+.auto-sales-formula { font-size: 24rpx; font-weight: 400; color: var(--ink-3); margin-left: 12rpx; }

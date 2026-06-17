@@ -1,17 +1,26 @@
 <view class="page">
   <view class="hero">
     <view class="hero-title">记录核销反馈</view>
-    <view class="hero-sub">填好真实数据，AI 才能给出靠谱复盘</view>
+    <view class="hero-sub">销售额由核销码自动核算，非手工估算</view>
+  </view>
+
+  <!-- C3：核销码 -->
+  <view class="card vcode-card" wx:if="{{verifyCode}}">
+    <view class="vcode-line">
+      <text class="vcode-k">本活动核销码</text>
+      <text class="vcode-v">{{verifyCode}}</text>
+    </view>
+    <view class="muted">学生报码核销，下方按「核销数 × 活动价 ¥{{price}}」自动算销售额</view>
   </view>
 
   <view class="card" wx:if="{{form}}">
     <view class="field">
-      <view class="field-label">核销数<text class="req">*</text></view>
+      <view class="field-label">核销码核销数<text class="req">*</text></view>
       <input class="input" type="digit" value="{{form.redeemCount}}" data-key="redeemCount" bindinput="onInput" placeholder="如：23" />
     </view>
     <view class="field">
-      <view class="field-label">估算销售额（元）<text class="req">*</text></view>
-      <input class="input" type="digit" value="{{form.estSales}}" data-key="estSales" bindinput="onInput" placeholder="如：386" />
+      <view class="field-label">估算销售额（自动）</view>
+      <view class="auto-sales">¥{{estSales}} <text class="auto-sales-formula">= {{form.redeemCount}} 单 × ¥{{price}}</text></view>
     </view>
     <view class="field">
       <view class="field-label">顾客反馈</view>

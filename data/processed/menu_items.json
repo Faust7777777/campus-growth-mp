@@ -1,20 +1,20 @@
 {
   "store": "北门鸡排饭",
   "campus": "大连理工大学盘锦校区",
-  "updatedAt": "2026-06-15",
-  "note": "热度分由人工从 QQ 群点单提及、公开评论、商家观察整理估算，0-100，仅作演示参考",
+  "updatedAt": "2026-06-16",
+  "note": "热度分由人工从 QQ 群点单提及、公开评论、商家观察整理估算，0-100；cost 为单份估算成本（元），用于后端毛利拦截演示。",
   "items": [
-    { "id": "m01", "name": "招牌鸡排饭", "category": "主食", "price": 18, "heat": 92, "tags": ["招牌", "饱腹", "性价比"] },
-    { "id": "m02", "name": "黑椒鸡排饭", "category": "主食", "price": 19, "heat": 81, "tags": ["重口", "下饭"] },
-    { "id": "m03", "name": "香辣鸡腿饭", "category": "主食", "price": 18, "heat": 78, "tags": ["辣", "解馋"] },
-    { "id": "m04", "name": "照烧鸡排饭", "category": "主食", "price": 19, "heat": 64, "tags": ["微甜", "女生偏好"] },
-    { "id": "m05", "name": "双拼鸡排饭", "category": "主食", "price": 22, "heat": 58, "tags": ["量大", "男生偏好"] },
-    { "id": "m06", "name": "鸡米花饭", "category": "主食", "price": 15, "heat": 71, "tags": ["便宜", "课间快食"] },
-    { "id": "m07", "name": "柠檬茶", "category": "饮品", "price": 6, "heat": 69, "tags": ["解腻", "加购"] },
-    { "id": "m08", "name": "冰红茶", "category": "饮品", "price": 4, "heat": 55, "tags": ["便宜", "解腻"] },
-    { "id": "m09", "name": "玉米浓汤", "category": "饮品", "price": 5, "heat": 47, "tags": ["暖胃", "冬季"] },
-    { "id": "m10", "name": "加饭", "category": "加料", "price": 2, "heat": 38, "tags": ["男生偏好", "加量"] },
-    { "id": "m11", "name": "卤蛋", "category": "加料", "price": 2, "heat": 44, "tags": ["加购", "低价"] },
-    { "id": "m12", "name": "鸡排加片", "category": "加料", "price": 5, "heat": 52, "tags": ["加量", "升级"] }
+    { "id": "m01", "name": "招牌鸡排饭", "category": "主食", "price": 18, "cost": 8, "heat": 92, "tags": ["招牌", "饱腹", "性价比"] },
+    { "id": "m02", "name": "黑椒鸡排饭", "category": "主食", "price": 19, "cost": 9, "heat": 81, "tags": ["重口", "下饭"] },
+    { "id": "m03", "name": "香辣鸡腿饭", "category": "主食", "price": 18, "cost": 8, "heat": 78, "tags": ["辣", "解馋"] },
+    { "id": "m04", "name": "照烧鸡排饭", "category": "主食", "price": 19, "cost": 9, "heat": 64, "tags": ["微甜", "女生偏好"] },
+    { "id": "m05", "name": "双拼鸡排饭", "category": "主食", "price": 22, "cost": 11, "heat": 58, "tags": ["量大", "男生偏好"] },
+    { "id": "m06", "name": "鸡米花饭", "category": "主食", "price": 15, "cost": 7, "heat": 71, "tags": ["便宜", "课间快食"] },
+    { "id": "m07", "name": "柠檬茶", "category": "饮品", "price": 6, "cost": 2, "heat": 69, "tags": ["解腻", "加购"] },
+    { "id": "m08", "name": "冰红茶", "category": "饮品", "price": 4, "cost": 1, "heat": 55, "tags": ["便宜", "解腻"] },
+    { "id": "m09", "name": "玉米浓汤", "category": "饮品", "price": 5, "cost": 2, "heat": 47, "tags": ["暖胃", "冬季"] },
+    { "id": "m10", "name": "加饭", "category": "加料", "price": 2, "cost": 1, "heat": 38, "tags": ["男生偏好", "加量"] },
+    { "id": "m11", "name": "卤蛋", "category": "加料", "price": 2, "cost": 1, "heat": 44, "tags": ["加购", "低价"] },
+    { "id": "m12", "name": "鸡排加片", "category": "加料", "price": 5, "cost": 2, "heat": 52, "tags": ["加量", "升级"] }
   ]
 }

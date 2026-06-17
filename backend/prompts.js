@@ -9,12 +9,12 @@ function rankBrief(list, valKey, limit) {
 }
 
 function buildCampaignMessages(payload, data) {
-  const { store = {}, goal = '' } = payload;
+  const { store = {}, goal = '', historySummary = '' } = payload;
   const { menuItems, dashboardStats } = data;
 
-  // 店铺自有菜单（人工维护，供 AI 组合套餐用）
+  // 店铺自有菜单（人工维护，供 AI 组合套餐用）；带成本，供毛利约束
   const menuBrief = (menuItems && menuItems.items ? menuItems.items : [])
-    .map((m) => `${m.name}(${m.category},${m.price}元)`)
+    .map((m) => `${m.name}(${m.category},售价${m.price}元,成本${m.cost}元)`)
     .join('、');
 
   // 校园社群聚合趋势（来自数据管线 dashboard_stats，§8 指定字段）
@@ -32,7 +32,8 @@ function buildCampaignMessages(payload, data) {
       "name": "活动名(简短有记忆点)",
       "scene": "适用场景",
       "comboName": "推荐套餐名",
-      "comboItems": ["套餐内菜品名", "..."],
+      "comboItems": ["套餐内菜品名(尽量用菜单内名称)", "..."],
+      "comboPrice": 25,
       "priceSuggestion": "价格建议(含原价/活动价/让利逻辑)",
       "token": "优惠口令(4-6字，便于口口相传)",
       "expectedHook": "预期吸引点(一句话)",
@@ -50,7 +51,8 @@ function buildCampaignMessages(payload, data) {
 }`;
 
   const system = `你是面向校园小店的增长运营参谋。服务对象是大连理工大学盘锦校区及周边的小餐饮店主。
-要求：方案必须适合校园小店、可落地、低门槛；不得生成会严重亏损、夸大宣传或执行复杂的方案；让利克制，优先“加量/加饮/加价购”而非大幅直接打折。
+要求：方案必须适合校园小店、可落地、低门槛；让利克制，优先“加量/加饮/加价购”而非大幅直接打折。
+【毛利硬约束】comboPrice 必须 ≥ 套餐内各菜品成本之和，且毛利率不低于 20%，绝不生成亏本价。
 以下趋势来自校园社群样本的聚合分析，不要引用任何原始聊天内容、昵称或群名。不要声称严格因果增长。
 只输出一个 JSON 对象，不要任何解释、不要 markdown 代码块。JSON 必须严格符合给定结构，且 campaigns 恰好包含 3 个方案。`;
 
@@ -73,8 +75,8 @@ function buildCampaignMessages(payload, data) {
 【消费场景分布】${sceneBrief || '（暂无）'}
 【品类热度榜】${itemHeatBrief || '（暂无）'}
 【价格敏感度分布】${priceBrief || '（暂无）'}
-${insights ? '【趋势结论】\n' + insights + '\n' : ''}
-请基于这些趋势、店铺菜单和商家目标，生成 3 个适合校园小店执行的活动方案。严格按以下 JSON 结构输出：
+${insights ? '【趋势结论】\n' + insights + '\n' : ''}${historySummary ? '【本店历史活动（请参考并避免重复）】' + historySummary + '\n' : ''}
+请基于这些趋势、店铺菜单和商家目标，生成 3 个适合校园小店执行的活动方案。每个套餐给出 comboPrice（活动价，需满足毛利硬约束）。严格按以下 JSON 结构输出：
 ${schema}`;
 
   return [

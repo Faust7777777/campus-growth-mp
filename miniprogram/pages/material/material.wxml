@@ -17,6 +17,27 @@
     <view class="camp-risk">⚠ {{c.risk}}</view>
   </view>
 
+  <!-- C1：毛利护栏（去风险化）-->
+  <view class="card" wx:if="{{c.margin}}">
+    <view class="card-title"><view class="dot"></view>毛利护栏（系统自动核算）</view>
+    <view class="margin-grid">
+      <view class="margin-cell"><view class="margin-num">¥{{c.comboPrice}}</view><view class="margin-label">活动价</view></view>
+      <view class="margin-cell"><view class="margin-num">¥{{c.margin.comboCost}}</view><view class="margin-label">套餐成本</view></view>
+      <view class="margin-cell"><view class="margin-num ok">¥{{c.margin.grossMargin}}</view><view class="margin-label">单份毛利</view></view>
+      <view class="margin-cell"><view class="margin-num ok">{{c.margin.marginRate}}%</view><view class="margin-label">毛利率</view></view>
+    </view>
+    <view class="margin-badge {{c.margin.blocked ? 'warn' : 'ok'}}">{{c.margin.status}}</view>
+  </view>
+
+  <!-- C3：核销码（可识别归因）-->
+  <view class="card" wx:if="{{c.verifyCode}}">
+    <view class="card-title"><view class="dot"></view>核销码</view>
+    <view class="vcode-row">
+      <view class="vcode">{{c.verifyCode}}</view>
+      <view class="vcode-tip">学生报此码核销，销售额由「核销数 × 活动价」自动计算，归因可识别</view>
+    </view>
+  </view>
+
   <!-- 内容物料 -->
   <view class="section-title"><view class="dot"></view>内容物料（可一键复制）</view>
   <view wx:for="{{copyBlocks}}" wx:key="key" class="card copy-card">

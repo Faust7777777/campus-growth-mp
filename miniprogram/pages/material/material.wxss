@@ -5,3 +5,18 @@
 .copy-label { font-size: 29rpx; font-weight: 700; }
 .copy-btn { background: var(--brand-soft); color: var(--brand-deep); font-size: 24rpx; padding: 10rpx 26rpx; border-radius: 999rpx; font-weight: 600; }
 .copy-text { background: #F7F8FA; border-radius: 14rpx; padding: 22rpx; font-size: 27rpx; color: var(--ink-2); line-height: 1.7; white-space: pre-wrap; }
+
+/* C1 毛利护栏 */
+.margin-grid { display: flex; gap: 14rpx; }
+.margin-cell { flex: 1; background: #F7F8FA; border-radius: 14rpx; padding: 18rpx 0; text-align: center; }
+.margin-num { font-size: 34rpx; font-weight: 800; color: var(--ink); }
+.margin-num.ok { color: var(--ok); }
+.margin-label { font-size: 22rpx; color: var(--ink-3); margin-top: 4rpx; }
+.margin-badge { margin-top: 16rpx; border-radius: 12rpx; padding: 12rpx 18rpx; font-size: 25rpx; text-align: center; }
+.margin-badge.ok { background: #EAF7EC; color: #0C7A2E; }
+.margin-badge.warn { background: #FFF7E8; color: #A35200; }
+
+/* C3 核销码 */
+.vcode-row { display: flex; align-items: center; gap: 20rpx; }
+.vcode { font-size: 38rpx; font-weight: 800; letter-spacing: 2rpx; color: var(--brand-deep); background: var(--brand-soft); border: 2rpx dashed var(--brand); border-radius: 14rpx; padding: 16rpx 24rpx; white-space: nowrap; }
+.vcode-tip { font-size: 23rpx; color: var(--ink-3); line-height: 1.5; }
