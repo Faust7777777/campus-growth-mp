@@ -73,8 +73,9 @@
   .mtab{ width:100%; border-collapse:collapse; margin-top:3pt; font-size:7pt; }
   .mtab th{ background:var(--soft); color:var(--deep); font-weight:700; text-align:left; padding:2.5pt 5pt; border:.5pt solid #f3ddd1; }
   .mtab td{ padding:2.5pt 5pt; border:.5pt solid var(--line); color:var(--ink2); vertical-align:top; line-height:1.34; }
-  .mtab td:first-child{ font-weight:700; color:var(--ink); white-space:nowrap; }
-  .mtab td:nth-child(3){ color:var(--ok); font-weight:700; white-space:nowrap; }
+  .mtab td:first-child{ font-weight:700; color:var(--ink); }
+  .mtab td:nth-child(2){ color:var(--ok); font-weight:700; }
+  .mtab td:nth-child(4){ color:var(--warn); }
   /* 小程序界面样机 */
   .screens{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10pt; margin-top:4pt; }
   .phone{ border:1.5pt solid #d4d8df; border-radius:11pt; background:#F5F6F8; overflow:hidden; box-shadow:0 1pt 3pt rgba(0,0,0,.07); }
@@ -113,7 +114,7 @@
     </div>
     <div class="top-right">
       <div>度小满“小满摘星计划” · 机会验证 · <b>方向一 小微AI</b></div>
-      <div>数据来源：<b>大连理工大学（盘锦校区）</b>本人校园 QQ 群</div>
+      <div>数据来源：<b>大连理工大学（盘锦校区）</b>校园 QQ 群</div>
       <div class="links" style="margin-top:2pt;"><span>代码仓库：[待填]</span><span>实机演示：[待填]</span></div>
     </div>
   </div>
@@ -126,7 +127,7 @@
     </div>
     <div class="body">
       <b>核心判断：</b>学生日常吃饭默认回食堂（便宜、近、不用想），小店和食堂拼正餐比价会输；机会在食堂顾不上的时段。
-      <b>为什么现在：</b>大模型让“活动策划 + 文案 + 复盘”能低成本自动化，而微信小程序、社群、团购券码已是小店现成触点，产品可以很轻地嵌进老板已有的工作流。
+      <b>时机：</b>大模型让“活动策划 + 文案 + 复盘”能低成本自动化，而微信小程序、社群、团购券码已是小店现成触点，产品可以很轻地嵌进老板已有的工作流。
     </div>
   </div>
 
@@ -134,7 +135,7 @@
   <div class="sec">
     <h2>2 · 用户证据：从真实校园群清洗出消费信号 <span class="tag">数据分析</span></h2>
     <div class="body" style="margin-top:2pt;">
-      我导出了自己学校（大连理工盘锦）一个大学 QQ 群近 3 个月、<b>93,618 条</b>聊天。真实校园群什么都聊、噪音大，所以我搭了一条 AI 管线分批打标、逐层清洗，把消费相关的内容提炼出来——<b>这道清洗本身就是产品的核心数据能力</b>。数据层<b>合规接入</b>美团公开评论、QQ 频道 / 群、贴吧等多源并脱敏，本份分析以校园 QQ 群样本跑通。
+      我导出了自己学校（大连理工盘锦）一个大学 QQ 群近 3 个月、<b>93,618 条</b>聊天。真实校园群什么都聊、噪音大，所以我搭了一条 AI 管线分批打标、清洗，把消费相关的内容提炼出来——<b>清洗管线本身就是产品的一部分</b>。数据层<b>合规接入</b>美团公开评论、QQ 频道 / 群、贴吧等多源并脱敏，本份分析以校园 QQ 群样本跑通。
     </div>
     <div class="charts">
       <div class="chart funnel">
@@ -201,7 +202,7 @@
   <div class="sec">
     <h2>3 · MVP：可跑通的微信小程序 Demo <span class="tag">真 AI 闭环</span></h2>
     <div class="flowline">
-      <b>已跑通 8 页闭环：</b>店铺建档 → 选增长目标 → 看校园趋势 → AI 生成 3 个活动 → 执行物料 → 核销 → AI 复盘。后端调用 DeepSeek 生成活动包与复盘，失败自动回退；做法为“聚合数据 + 规则排序 + LLM 结构化生成”。
+      <b>已跑通 8 页闭环：</b>店铺建档 → 选增长目标 → 看校园趋势 → AI 生成 3 个活动 → 执行物料 → 核销 → AI 复盘。后端调用 DeepSeek 生成活动包与复盘，失败自动回退；做法是聚合数据、规则排序、再交给 LLM 做结构化生成。
     </div>
     <div class="cards3">
       <div class="c3">
@@ -232,20 +233,21 @@
 
   <!-- 5 两周验证计划 -->
   <div class="sec">
-    <h2>5 · 两周验证计划 <span class="tag">AARRR 全漏斗 × Sean Ellis PMF</span></h2>
-    <div class="body" style="margin-top:2pt;">两周走完 AARRR 获取 → 激活 → 留存 → 变现全漏斗，并用 Sean Ellis 测真实需求强度。<b>节奏：</b>D1–2 备数据与 Demo · D3–5 访谈（只问过去真实行为）· D6–9 试跑 + 核销 · D10–12 看复用 · D13–14 测付费与 PMF。</div>
+    <h2>5 · 两周验证：我要证明的几件事 <span class="tag">产品假设 × 指标 × 决策</span></h2>
+    <div class="body" style="margin-top:2pt;">两周不是填 AARRR 格子，是<b>赌 5 个产品假设</b>，每条都有对应的指标和不达标的动作。节奏：D1–2 备数据与 Demo · D3–5 访谈（只问过去真实行为）· D6–9 试跑 + 核销 · D10–12 看复用 · D13–14 测付费与 PMF。</div>
     <table class="mtab">
-      <tr><th style="width:18%">AARRR 阶段</th><th style="width:54%">通用指标（定义）</th><th style="width:28%">2 周目标</th></tr>
-      <tr><td>获取 Acquisition</td><td>访谈触达数 · 试用转化率（愿装 Demo 的店占比）</td><td>访谈 5–8、≥3 家试</td></tr>
-      <tr><td>激活 Activation</td><td>激活率（完成“建档→拿到可发布物料”核心动作）· TTFV 首次见效时长</td><td>&gt;50% · &lt;7 天</td></tr>
-      <tr><td>留存 Retention</td><td>复用率（愿做下一场活动）；长期看月留存率</td><td>≥3/5 家</td></tr>
-      <tr><td>收入 Revenue</td><td>付费转化率 · ARPU（愿付价位）· 单活动带码销售额</td><td>≥2/5 家愿付</td></tr>
-      <tr><td>推荐 Referral</td><td>转介绍率 · NPS（愿推荐给同商圈商家）</td><td>≥1 家转介绍</td></tr>
-      <tr><td>需求 / PMF</td><td>Sean Ellis 分：试用店中“没了它会非常失望”占比（≥40% 为 PMF 信号）</td><td>≥40%</td></tr>
+      <tr><th style="width:22%">我要验证什么</th><th style="width:29%">怎么验证</th><th style="width:22%">达标则</th><th style="width:27%">不达标则</th></tr>
+      <tr><td>老板真的需要吗</td><td>Sean Ellis ≥40%（"没了会失望"占比）</td><td>需求真实，继续推进</td><td>换场景或放弃</td></tr>
+      <tr><td>AI 生成的活动能用吗</td><td>激活率 &gt;50% · TTFV &lt;7 天</td><td>AI 产出实用，非玩具</td><td>调 prompt / 加人工编辑环节</td></tr>
+      <tr><td>用了一次还想用吗</td><td>复用率 ≥3/5 家</td><td>真依赖，非尝鲜</td><td>修核销 / 数据回馈断点</td></tr>
+      <tr><td>老板愿意付钱吗</td><td>≥2/5 家愿付</td><td>有付费意愿，定价合理</td><td>降门槛：先推单次 9.9 元尝鲜</td></tr>
+      <tr><td>能靠口碑传播吗</td><td>≥1 家转介绍</td><td>自然推荐动力在</td><td>需强运营推动</td></tr>
     </table>
     <div class="kv" style="margin-top:3pt;">
       <span class="k">北极星指标 North Star：</span>周活跃出活动的商家数 × 人均周活动数（经营动作密度）。<span class="k">单位经济对标：</span>LTV = ARPU × 生命周期 × 毛利率；健康线 LTV/CAC &gt; 3、CAC 回收周期 &lt; 12 月。
     </div>
+    <div class="kill"><b>决策线：</b>Sean Ellis ≥40% 且 ≥3 条达标 → 扩到同校商圈；Sean Ellis &lt;40% 或激活率 &lt;30% 或无人愿付 → 转更轻的"活动诊断工具"或更垂直的外卖 / 奶茶场景。</div>
+  </div>
     <div class="kill"><b>决策线：</b>AARRR 各阶段达标 且 Sean Ellis ≥40% → 扩到同校商圈；激活率 &lt;30% 或 Sean Ellis &lt;40% 或无人愿付 → 转更轻的“活动诊断工具”或更垂直的外卖 / 奶茶场景。</div>
   </div>
 
